@@ -1,0 +1,14 @@
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\Joy2Key.exe.config
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\Joy2Key.exe
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\Joy2Key.pdb
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\SharpDX.DirectInput.dll
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\SharpDX.dll
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\SharpDX.xml
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\bin\Debug\SharpDX.DirectInput.xml
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.csprojResolveAssemblyReference.cache
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.Form1.resources
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.JoystickSettings.resources
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.Properties.Resources.resources
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.csproj.GenerateResource.Cache
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.exe
+C:\Users\xu_22\Documents\Visual Studio 2017\Projects\Joy2Key\Joy2Key\obj\Debug\Joy2Key.pdb
