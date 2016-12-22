@@ -122,7 +122,7 @@ namespace Joy2Key
         private System.Windows.Forms.ListBox devList;
         private System.Windows.Forms.Button GetDevice;
         private System.Windows.Forms.ListBox logList;
-        private System.Windows.Forms.Button button1;
+       // private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }
 }

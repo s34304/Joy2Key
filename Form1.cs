@@ -24,6 +24,9 @@ namespace Joy2Key
         private Point leftStickOrigin;//左摇杆绘制区域原点
         int scale;
         private bool releaseButton;
+        private bool connectionSuccess;
+
+
         // Guid joystickGuid;
         public Form1()
         {
@@ -38,7 +41,8 @@ namespace Joy2Key
             nextPoint = new Point(0, 0);
             releaseButton = true;
             LoadAppSettings();
-            
+            connectionSuccess = false;
+
         }
 
         private void LoadAppSettings()
@@ -173,9 +177,35 @@ namespace Joy2Key
             {
                 listBox.Items.Add(msg);
                 if (listBox.Items.Count > 0)
-                    listBox.SelectedIndex = listBox.Items.Count - 1;
+                    listBox.SelectedIndex = listBox.Items.Count - 1;                
             }
         }
+
+        private delegate void AddClassToListBoxDelegate(string str, ListBox listBox);//定义委托类型
+
+        //添加
+        private void AddDeviceInfo(ListBox listBox, DeviceInfo deviceInfo)
+        {
+            listBox.DisplayMember = "JoystickName";
+            listBox.ValueMember = "JoystickGuid";
+
+            DeviceInfo deviceObj = new DeviceInfo(deviceInfo.JoystickGuid, deviceInfo.JoystickName);
+
+            if (listBox.InvokeRequired)//判断是否能当前线程调用
+            {
+                AddItemToListBoxDelegate d = AppendText;
+                listBox.Invoke(d, deviceObj, listBox);
+            }
+            else
+            {
+                listBox.Items.Add(deviceObj);
+                if (listBox.Items.Count > 0)
+                    listBox.SelectedIndex = listBox.Items.Count - 1;
+            }
+            
+            
+        }
+
 
 
         private void PrecessData(Guid guid)
@@ -195,6 +225,14 @@ namespace Joy2Key
             // Acquire the joystick
             joystick.Acquire();
 
+            if (!connectionSuccess)
+            {                
+                this.Invoke(new Action(() =>
+                {
+                    label1.Text = "连接成功";
+                }));
+            }
+
             // Poll events from joystick
             while (true)
             {
@@ -204,6 +242,8 @@ namespace Joy2Key
                 {
                     MouseAction(state);
                 }
+
+                
 
                 // Console.WriteLine(state);
                 /*  this.Invoke(new Action(() =>
@@ -269,18 +309,6 @@ namespace Joy2Key
             //}
         }
 
-        //添加
-        private void AddDeviceInfo(ListBox listBox, DeviceInfo deviceInfo)
-        {
-            listBox.DisplayMember = "JoystickName";
-            listBox.ValueMember = "JoystickGuid";
-
-            DeviceInfo obj = new DeviceInfo(deviceInfo.JoystickGuid, deviceInfo.JoystickName);
-            listBox.Items.Add(obj);
-            if (listBox.Items.Count > 0)
-                listBox.SelectedIndex = listBox.Items.Count - 1;
-        }
-
         //获取
         private string GetDeviceGuid(ListBox listBox)
         {
@@ -309,7 +337,7 @@ namespace Joy2Key
                     //  AppendText("设备列表");
                     AppendText(deviceInstance.InstanceGuid.ToString(), devList);
                 }));
-                // joystickGuid = deviceInstance.InstanceGuid;
+               
             }
 
             // If Gamepad not found, look for a Joystick
@@ -317,22 +345,13 @@ namespace Joy2Key
             foreach (var deviceInstance in directInput.GetDevices(DeviceType.Joystick, DeviceEnumerationFlags.AllDevices))
             {
                 this.Invoke(new Action(() =>
-                {
-                    //    AppendText("设备列表");
-                    //AppendText(deviceInstance.InstanceGuid.ToString(), devList);
+                {   
                     DeviceInfo deviceInfo = new DeviceInfo(deviceInstance.InstanceGuid.ToString(), deviceInstance.InstanceName);
                     AddDeviceInfo(devList, deviceInfo);
                 }));
                 //   joystickGuid = deviceInstance.InstanceGuid;
             }
 
-            // If Joystick not found, throws an error
-            /* if (joystickGuid == Guid.Empty)
-                {
-                    MessageBox.Show("No joystick/Gamepad found.");
-                    Environment.Exit(1);
-                }
-                */
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
